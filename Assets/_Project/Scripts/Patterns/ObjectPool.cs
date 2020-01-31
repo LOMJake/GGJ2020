@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T> where T : IPoolable
+public class ObjectPool<T> where T : UnityEngine.Object, IPoolable
 {
     private GameObject parent;
     private List<T> list = new List<T>();
@@ -37,7 +37,7 @@ public class ObjectPool<T> where T : IPoolable
         {
             go.SetActive(true);
             activatedObject = list[NextTestIndex];
-            activatedObject.Activate();
+            activatedObject.OnActivate();
             ++NextTestIndex;
             return true;
         }
@@ -51,7 +51,7 @@ public class ObjectPool<T> where T : IPoolable
             {
                 go.SetActive(true);
                 activatedObject = list[i];
-                activatedObject.Activate();
+                activatedObject.OnActivate();
                 NextTestIndex = i + 1;
                 return true;
             }
@@ -99,14 +99,14 @@ public class ObjectPool<T> where T : IPoolable
         }
     }
 
-    public void Populate(GameObject original, string suffix = "")
+    public void Populate(T original, string suffix = "")
     {
-        parent = new GameObject(string.Format("OBJECT POOL [{0}][{1}]", original.name, suffix));
+        parent = new GameObject(string.Format("OBJECT POOL [{0}][{1}]", original.GameObject.name, suffix));
         for (int i = 0; i < poolCapacity; i++)
         {
-            GameObject g = GameObject.Instantiate(original, parent.transform);
-            g.SetActive(false);
-            list.Add(g.GetComponent<T>());
+            T g = GameObject.Instantiate(original, parent.transform) as T;
+            g.GameObject.SetActive(false);
+            list.Add(g);
         }
     }
 
