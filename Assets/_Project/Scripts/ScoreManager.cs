@@ -16,6 +16,6 @@ public class ScoreManager : Singleton<ScoreManager>
     public void AddScore(int amount)
     {
         score += amount;
-        scoreLabel.text = "SCORE: " + score.ToString();
+        scoreLabel.text = "SCORE: " + score.ToString(); 
     }
 }

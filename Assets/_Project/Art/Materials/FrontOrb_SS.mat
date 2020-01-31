@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FrontOrb_SS
-  m_Shader: {fileID: 4800000, guid: b87a6c9baead9eb4e94660f7cb178620, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3119c64c3e3009140bdb5c072004f70b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
